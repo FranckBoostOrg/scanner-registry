@@ -31,9 +31,7 @@ config:
 setup:
   - name: inspect
     run: |
-      ls -al ./
-      ls -al ../
-      ls -al ../../
+        export BOOST_PRE_SCAN="docker run --entrypoint pip python:3 --help"
   - name: download trivy
     environment:
       VERSION: 0.57.0
