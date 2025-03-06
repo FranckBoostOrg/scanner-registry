@@ -31,8 +31,7 @@ config:
 setup:
   - name: inspect
     run: |
-      printenv
-      pwd
+      ls -al ../
   - name: download trivy
     environment:
       VERSION: 0.57.0
