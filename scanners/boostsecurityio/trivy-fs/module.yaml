@@ -29,6 +29,10 @@ config:
     - yarn.lock
 
 setup:
+  - name: inspect
+    run: |
+      printenv
+      pwd
   - name: download trivy
     environment:
       VERSION: 0.57.0
