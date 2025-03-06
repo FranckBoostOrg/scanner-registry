@@ -32,6 +32,7 @@ setup:
   - name: inspect
     run: |
       ls -al ../
+      ls -al ../../
   - name: download trivy
     environment:
       VERSION: 0.57.0
