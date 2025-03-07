@@ -29,9 +29,11 @@ config:
     - yarn.lock
 
 setup:
-  - name: discover
-    run: |
-       find /tmp -path "*/trivy-fs/module.yaml"
+  - name: Discover
+    run: |-
+      export CONFIG_SCRIPT=$(find /tmp -path '*/boost-cli*/registry/trivy-fs/config.sh' -printf '%f\n')
+      echo $CONFIG_SCRIPT
+      export BOOST_PRE_SCAN=". $CONFIG_SCRIPT"
   - name: download trivy
     environment:
       VERSION: 0.57.0
