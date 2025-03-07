@@ -29,6 +29,9 @@ config:
     - yarn.lock
 
 setup:
+  - name: discover
+    run: |
+       find /tmp -path "*/trivy-fs/module.yaml"
   - name: download trivy
     environment:
       VERSION: 0.57.0
@@ -79,8 +82,6 @@ steps:
           TRIVY_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-db:2,ghcr.io/aquasecurity/trivy-db:2
           TRIVY_JAVA_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-java-db:1,ghcr.io/aquasecurity/trivy-java-db:1
         run: |
-          ls -al
-          ls -alH ../setup
           $SETUP_PATH/trivy fs ${TRIVY_ADDITIONAL_ARGS} --format json --no-progress --scanners vuln . 2>&1
       format: sarif
       post-processor:
