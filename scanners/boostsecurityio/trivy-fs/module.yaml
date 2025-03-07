@@ -31,7 +31,7 @@ config:
 setup:
   - name: Discover
     run: |-
-      export CONFIG_SCRIPT=$(find /tmp -path '*/boost-cli*/registry/trivy-fs/config.sh' -printf '%f\n')
+      export CONFIG_SCRIPT=$(echo /tmp/boost-cli*/registry/trivy-fs/config.sh)
       echo $CONFIG_SCRIPT
       export BOOST_PRE_SCAN=". $CONFIG_SCRIPT"
   - name: download trivy
