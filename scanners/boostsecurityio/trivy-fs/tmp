@@ -1,0 +1,13 @@
+
+.fake: |
+   if [ "$(find . -name "requirement.xt" | wc -l)" != "0" && $BOOST_FORCE_SCAN ]
+   then
+      DOCKER_OPTS="--entrypoint bash --workdir /tmp"
+      DOCKER_OPTS="$DOCKER_OPTS --mount type=bind,src=$(pwd),dst=/tmp"
+      DOCKER_OPTS="$DOCKER_OPTS --mount type=bind,src=$(echo ~),dst=/root"
+      DOCKER_OPTS="$DOCKER_OPTS -e BOOST_PIP_INDEX_URL=$PIP_INDEX_URL"
+
+      CMD="pip install pipenv --user && export PIP_INDEX_URL=$BOOST_PIP_INDEX_URL"
+      CMD="$CMD "'~'"/.local/bin/pipenv install -r requirements.txt"
+      docker run $DOCKER_OPTS python:3 -c "$CMD"
+   fi
