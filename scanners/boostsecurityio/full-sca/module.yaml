@@ -21,7 +21,7 @@ steps:
       command:
         docker:
           image: aquasec/trivy
-          command: trivy fs $TRIVY_ADDITIONAL_ARGS --cache-dir=/tmp/trivy/ --format=cyclonedx --license-full --no-progress --scanners vuln . 2>&1
+          command: trivy fs --cache-dir=/tmp/trivy/ --format=cyclonedx --license-full --no-progress --scanners vuln . 2>&1
           workdir: /src
           environment:
             XDG_CONFIG_HOME: /tmp
