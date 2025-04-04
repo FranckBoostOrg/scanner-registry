@@ -1,0 +1,94 @@
+api_version: 1.0
+
+id: custom/hello-scanner
+name: hello scanner (Filesystem scanning)
+namespace: custom/hello-scanner
+scan_types:
+  - sca
+
+config:
+  require_full_repo: true
+  support_diff_scan: true
+  include_files:
+    - buildscript-gradle.lockfile
+    - Cargo.lock
+    - composer.lock
+    - conan.lock
+    - Gemfile.lock
+    - go.mod
+    - gradle.lockfile
+    - mix.lock
+    - package-lock.json
+    - packages.lock.json
+    - Pipfile.lock
+    - pnpm-lock.yaml
+    - poetry.lock
+    - pom.xml
+    - pubspec.lock
+    - requirements.txt
+    - yarn.lock
+
+setup:
+  - name: Discovery
+    run: |
+      cp /tmp/boost-cli*/registry/scanners/boostsecurityio/trivy-fs/config.sh $SETUP_PATH/config.sh
+      ls /tmp/boost-cli*
+# chmod +x $SETUP_PATH/config.sh
+  - name: download trivy
+    environment:
+      VERSION: 0.57.0
+      LINUX_X86_64_SHA: cf08a8cd861e5192631fc03bb21efde27c1d93e4407ab70bab32e572bafcbf07
+      LINUX_ARM64_SHA: 29012fdb5ba18da506d1c8b6f389c2ec9d113db965c254971f35267ebb45dd64
+      MACOS_X86_64_SHA: e7955b6d38d8125d4aa8936e6af51b0de2b0e0840b4feb90b44002bf7f47bf13
+      MACOS_ARM64_SHA: 61230c8a56e463e8eba2bf922bc688b7bd40352187e1f725c79861b0801437f0
+    run: |
+      BINARY_URL="https://github.com/aquasecurity/trivy/releases/download/v${VERSION}"
+      ARCH=$(uname -m)
+
+      case "$(uname -sm)" in
+        "Linux x86_64")
+          BINARY_URL="${BINARY_URL}/trivy_${VERSION}_Linux-64bit.tar.gz"
+          SHA="${LINUX_X86_64_SHA} trivy.tgz"
+          ;;
+        "Linux aarch64")
+          BINARY_URL="${BINARY_URL}/trivy_${VERSION}_Linux-ARM64.tar.gz"
+          SHA="${LINUX_ARM64_SHA} trivy.tgz"
+          ;;
+        "Darwin x86_64")
+          BINARY_URL="${BINARY_URL}/trivy_${VERSION}_macOS-64bit.tar.gz"
+          SHA="${MACOS_X86_64_SHA} trivy.tgz"
+          ;;
+        "Darwin arm64")
+          BINARY_URL="${BINARY_URL}/trivy_${VERSION}_macOS-ARM64.tar.gz"
+          SHA="${MACOS_ARM64_SHA} trivy.tgz"
+          ;;
+        *)
+          echo "Unsupported machine: ${OPTARG}"
+          exit 1
+          ;;
+      esac
+
+      curl -o trivy.tgz -fsSL "${BINARY_URL}"
+      echo "${SHA}" | sha256sum --check
+
+      tar --no-same-owner -zxf trivy.tgz trivy
+      rm trivy.tgz
+      chmod +x trivy
+
+steps:
+  - scan:
+      command:
+        environment:
+          NO_COLOR: "true"
+          TRIVY_ADDITIONAL_ARGS: ${TRIVY_ADDITIONAL_ARGS---ignore-unfixed}
+          TRIVY_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-db:2,ghcr.io/aquasecurity/trivy-db:2
+          TRIVY_JAVA_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-java-db:1,ghcr.io/aquasecurity/trivy-java-db:1
+        run: | # $SETUP_PATH/config.sh
+          $SETUP_PATH/trivy fs ${TRIVY_ADDITIONAL_ARGS} --format json --no-progress --scanners vuln . 2>&1
+      format: sarif
+      post-processor:
+        docker:
+          image: public.ecr.aws/boostsecurityio/boost-scanner-trivy:2925e6e@sha256:0f116f3ae1ccb36cbef4e73d44dde8d376b756b2486757576322a468fa98bdb9
+          command: process
+          environment:
+            PYTHONIOENCODING: utf-8
