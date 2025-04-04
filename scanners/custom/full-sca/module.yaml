@@ -1,8 +1,8 @@
 api_version: 1.0
 
-id: boostsecurityio/full-sca
-name: BoostSecurity Full SCA
-namespace: boostsecurityio/full-sca
+id: custom/full-sca
+name: Custom Full SCA
+namespace: custom/full-sca
 scan_types:
   - sca
   - license
