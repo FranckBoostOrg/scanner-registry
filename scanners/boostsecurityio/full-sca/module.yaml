@@ -1,0 +1,39 @@
+api_version: 1.0
+
+id: boostsecurityio/full-sca
+name: BoostSecurity Full SCA
+namespace: boostsecurityio/full-sca
+scan_types:
+  - sca
+  - license
+
+config:
+  require_full_repo: true
+  support_diff_scan: true
+
+setup:
+  - name: download trivy
+    run: |
+      echo "Hello world"
+
+steps:
+  - scan:
+      command:
+        docker:
+          image: aquasec/trivy
+          command: trivy fs $TRIVY_ADDITIONAL_ARGS --cache-dir=/tmp/trivy/ --format=cyclonedx --license-full --no-progress --scanners vuln . 2>&1
+          workdir: /src
+          environment:
+            XDG_CONFIG_HOME: /tmp
+            HOME: /tmp
+            NO_COLOR: "true"
+            TRIVY_ADDITIONAL_ARGS: ${TRIVY_ADDITIONAL_ARGS---ignore-unfixed}
+            TRIVY_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-db:2,ghcr.io/aquasecurity/trivy-db:2
+            TRIVY_JAVA_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-java-db:1,ghcr.io/aquasecurity/trivy-java-db:1
+      format: cyclonedx
+      post-processor:
+        docker:
+          image: public.ecr.aws/boostsecurityio/boost-scanner-trivy-sbom:9b693ef@sha256:249ee707158424d8bd333198e1512ca295fe30c6fff2d2b1adff9e8f914b42cb
+          command: process
+          environment:
+            PYTHONIOENCODING: utf-8
