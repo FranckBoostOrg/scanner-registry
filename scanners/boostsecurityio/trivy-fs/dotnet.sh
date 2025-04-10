@@ -12,6 +12,9 @@ do
 
     echo "Dotnet project without any lockfile. Restoring lockfile"
 
-    docker run --mount "type=bind,src=$project_location,dst=/tmp" --mount "type=bind,src=$nuget_cache,dst=/root/.nuget" \
-           --entrypoint dotnet mcr.microsoft.com/dotnet/sdk:9.0 restore -f --use-lock-file
+    docker run --mount "type=bind,src=$project_location,dst=/tmp" \
+               --mount "type=bind,src=$nuget_cache,dst=/root/.nuget" \
+               --workdir /tmp \
+               --entrypoint dotnet \
+               mcr.microsoft.com/dotnet/sdk:9.0 restore -f --use-lock-file
 done
