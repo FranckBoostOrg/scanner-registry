@@ -53,8 +53,10 @@ pip_setup() {
         # No PIP_INDEX_URL nor BOOST_FORCE_SCAN --> nothing to do
         return
     fi
+    docker run -d --entrypoint tail --mount type=bind,src=$(pwd),dst=/workdir --mount type=bind,src=$(echo ~),dst=/root --workdir /workdir --name setup_utils python:3 -f /dev/null
     docker exec setup_utils python -m pip install pipenv --user
-    docker exec setup_utils python -m pip install pipenv --user
+    docker exec setup_utils export PIP_INDEX_URL="$BOOST_PIP_INDEX_URL"
+    docker exec setup_utils /root/.local/pipenv -r requirements.txt
 }
 
 if [ "$(find . -name "requirement.xt" | wc -l)" != "0" && $BOOST_FORCE_SCAN ]
