@@ -17,4 +17,6 @@ do
                --workdir /tmp \
                --entrypoint dotnet \
                mcr.microsoft.com/dotnet/sdk:9.0 restore -f --use-lock-file > /dev/null 2>&1
+
+    chmod o+rw $project_location/*
 done
