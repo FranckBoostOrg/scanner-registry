@@ -15,8 +15,6 @@ do
     docker run --mount "type=bind,src=$project_location,dst=/tmp" \
                --mount "type=bind,src=$nuget_cache,dst=/root/.nuget" \
                --workdir /tmp \
-               --entrypoint dotnet \
-               mcr.microsoft.com/dotnet/sdk:9.0 restore -f --use-lock-file > /dev/null 2>&1
-
-    chmod o+rw $project_location/*
+               --entrypoint bash \
+               -c 'dotnet mcr.microsoft.com/dotnet/sdk:9.0 restore -f --use-lock-file && chmod o+rw *' > /dev/null 2>&1
 done
