@@ -18,5 +18,5 @@ do
                --entrypoint dotnet \
                mcr.microsoft.com/dotnet/sdk:9.0 restore -f --use-lock-file > /dev/null 2>&1
 
-    sudo chmod o+rw $project_location/*
+    sudo chmod -R o+rw $project_location
 done
