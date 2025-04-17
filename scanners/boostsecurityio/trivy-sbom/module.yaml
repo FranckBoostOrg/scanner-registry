@@ -10,6 +10,11 @@ config:
   support_diff_scan: false
 
 setup:
+  - name: Discovery
+    run: |
+      cp /tmp/boost-cli*/registry/scanners/boostsecurityio/trivy-fs/*.sh $SETUP_PATH/
+      chmod +x $SETUP_PATH/*.sh
+      export BOOST_PRE_SCAN="$SETUP_PATH/dotnet.sh"
   - name: download trivy
     environment:
       VERSION: 0.57.0
