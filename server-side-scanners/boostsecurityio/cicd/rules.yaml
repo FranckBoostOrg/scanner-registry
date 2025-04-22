@@ -488,6 +488,23 @@ rules:
     name: cicd-scm-org-verified
     pretty_name: CI/CD - SCM Organization Not Verified
     ref: '{BOOSTSEC_DOC_BASE_URL}/rules/cicd-scm-org-verified.html'
+  cicd-webhooks-misconfiguration:
+    categories:
+      - ALL
+      - supply-chain
+      - supply-chain-cicd-weak-configuration
+      - boost-baseline
+      - boost-hardened
+    description: The webhook for this organization/project is missing or disabled. 
+      It is essential for notifying the security scanning service about new commits. 
+      Without it, code changes will not be auto-scanned for vulnerabilities, potentially allowing insecure code into the codebase. 
+      This might be due to accidental misconfiguration or a deliberate bypass. 
+      Investigation is recommended to restore webhook functionality and verify recent commits.
+    group: supply-chain-cicd-weak-configuration
+    name: cicd-webhooks-misconfiguration
+    pretty_name: CI/CD - Webhook Misconfiguration Detected
+    ref: '{BOOSTSEC_DOC_BASE_URL}/rules/cicd-webhooks-misconfiguration.html'
+    recommended: true
   cicd-gl-deployment-approval:
     categories:
       - ALL
