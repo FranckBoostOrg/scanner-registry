@@ -67,7 +67,7 @@ steps:
             $SETUP_PATH/dotnet.sh
             TRIVY_CMD="fs"
             TRIVY_PATH="."
-            if [ $(find . -maxdepth 1 -name "*.cdx.json" | wc -l) == "1" ]
+            if [ "$(find . -maxdepth 1 -name "*.cdx.json" | wc -l)" == "1" ]
             then
               TRIVY_CMD="sbom"
               TRIVY_PATH="*.cdx.json"
