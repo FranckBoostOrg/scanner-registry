@@ -66,7 +66,7 @@ steps:
         run: |
             TRIVY_CMD="fs"
             TRIVY_PATH="."
-            cdx_filename="$(find . -maxdepth 1 -name "*.cdx.json)"
+            cdx_filename="$(find . -maxdepth 1 -name "*.cdx.json")"
             if [ "$(echo $cdx_filename | wc -l)" = "1" ] 
             then
               TRIVY_CMD="sbom"
