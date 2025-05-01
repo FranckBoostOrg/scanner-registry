@@ -65,14 +65,14 @@ steps:
           TRIVY_JAVA_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-java-db:1,ghcr.io/aquasecurity/trivy-java-db:1
         run: |
             TRIVY_CMD="fs"
-            TRIVY_PATH="."
+            TRIVY_OPTS="--license-full ."
             cdx_filename="$(find . -maxdepth 1 -name "*.cdx.json")"
             if [ "$(echo $cdx_filename | wc -l)" = "1" ] 
             then
               TRIVY_CMD="sbom"
-              TRIVY_PATH="$cdx_filename"
+              TRIVY_OPTS="$cdx_filename"
             fi
-            $SETUP_PATH/trivy $TRIVY_CMD --format=cyclonedx --license-full --no-progress --scanners vuln --cache-dir=/tmp/trivy/ $TRIVY_PATH 2>&1
+            $SETUP_PATH/trivy $TRIVY_CMD --format=cyclonedx --no-progress --scanners vuln --cache-dir=/tmp/trivy/ $TRIVY_OPTS 2>&1
       format: cyclonedx
       post-processor:
         docker:
