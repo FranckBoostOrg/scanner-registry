@@ -24,5 +24,6 @@ steps:
             PYTHONWARNINGS: ignore
       post-processor:                     # optional step, accepts 1x or more steps
         run: |
-          echo "$#"
-          echo "$@"
+          STD_IN=$(</dev/stdin)
+          echo "Echoing stdin:"
+          echo "$STD_IN"
