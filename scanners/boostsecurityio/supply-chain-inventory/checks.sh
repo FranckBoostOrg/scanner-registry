@@ -9,7 +9,7 @@ read -r -d '' VAR << EOM
           "name": "project1",
           "namespace": "generic",
           "provider": "any",
-          "type": "project_file",
+          "type": "app",
           "version": "128a63446a954579617e875aaab7d2978154e969",
           "details": {
             "type": "package",
