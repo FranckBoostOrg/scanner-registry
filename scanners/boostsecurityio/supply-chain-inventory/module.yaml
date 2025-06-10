@@ -23,7 +23,8 @@ steps:
             XDG_CONFIG_HOME: /tmp
             PYTHONWARNINGS: ignore
       post-processor:                     # optional step, accepts 1x or more steps
-        run: |
-          STD_IN=$(</dev/stdin)
-          echo "Echoing stdin:"
-          echo "$STD_IN"
+        docker:
+          image: python:3
+          command: |
+            STD_IN=$(</dev/stdin)
+            echo $STD_IN
