@@ -11,6 +11,12 @@ config:
   support_diff_scan: false
   require_full_repo: true
 
+setup:
+- name: Copy Boost Gitleaks Rules
+  run: |
+      cp $SETUP_PATH/../../registry/scanners/boostsecurityio/supply-chain-inventory/checks.sh $SETUP_PATH/
+      chmod +x $SETUP_PATH/checks.sh
+
 steps:
   - scan:
       format: supply_chain_inventory
@@ -23,8 +29,5 @@ steps:
             XDG_CONFIG_HOME: /tmp
             PYTHONWARNINGS: ignore
       post-processor:                     # optional step, accepts 1x or more steps
-        docker:
-          image: python:3-slim
-          entrypoint: sh
-          command: |
-            -c 'STD_IN=$(</dev/stdin); echo $STD_IN'
+        cmd: |
+          $SETUP_PATH/checks.sh
