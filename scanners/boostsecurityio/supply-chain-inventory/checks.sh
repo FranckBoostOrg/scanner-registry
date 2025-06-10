@@ -19,4 +19,5 @@ read -r -d '' VAR << EOM
         }]
 EOM
 
+
 echo $STD_IN | jq --raw-output "$VAR"
