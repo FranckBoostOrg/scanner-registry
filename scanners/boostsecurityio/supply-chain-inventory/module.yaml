@@ -27,5 +27,4 @@ steps:
           image: python:3-slim
           entrypoint: sh
           command: |
-            STD_IN=$(</dev/stdin)
-            echo $STD_IN
+            -c 'STD_IN=$(</dev/stdin); echo $STD_IN'
