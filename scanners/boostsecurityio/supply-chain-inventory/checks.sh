@@ -8,8 +8,8 @@ read -r -d '' VAR << EOM
           "purl": "pkg:generic/project1",
           "name": "project1",
           "namespace": "generic",
-          "provider": "csproj",
-          "type": "any",
+          "provider": "any",
+          "type": "project_file",
           "version": "128a63446a954579617e875aaab7d2978154e969",
           "details": {
             "type": "package",
