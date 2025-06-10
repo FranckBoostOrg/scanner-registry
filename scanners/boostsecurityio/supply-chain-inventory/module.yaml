@@ -24,7 +24,8 @@ steps:
             PYTHONWARNINGS: ignore
       post-processor:                     # optional step, accepts 1x or more steps
         docker:
-          image: python:3
+          image: python:3-slim
+          entrypoint: sh
           command: |
             STD_IN=$(</dev/stdin)
             echo $STD_IN
