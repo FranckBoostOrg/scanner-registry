@@ -22,3 +22,7 @@ steps:
           environment:
             XDG_CONFIG_HOME: /tmp
             PYTHONWARNINGS: ignore
+      post-processor:                     # optional step, accepts 1x or more steps
+        run: |
+          echo "$#"
+          echo "$@"
