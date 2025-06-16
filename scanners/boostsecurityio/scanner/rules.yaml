@@ -6,6 +6,9 @@ import:
   - boostsecurityio/sci
   - boostsecurityio/sci-sca
   - boostsecurityio/supply-chain-inventory
+  - boostsecurityio/mitre-cwe
+  - boostsecurityio/sca-cve
+  - boostsecurityio/stored-secrets
 
 rules:
   cert-expired:

@@ -15,9 +15,13 @@ scan_types:
   - metadata
   - sca
   - sci
+  - secrets
   - license
 
 includes:
   - boostsecurityio/baseline
   - boostsecurityio/composition
   - boostsecurityio/supply-chain-inventory
+  - boostsecurityio/semgrep
+  - boostsecurityio/trivy-fs
+  - boostsecurityio/gitleaks
