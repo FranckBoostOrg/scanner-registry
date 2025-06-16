@@ -15,13 +15,16 @@ scan_types:
   - metadata
   - sca
   - sci
-  - secrets
+#  - secrets
   - license
+
+setup:
+    - run: echo hello  
 
 includes:
   - boostsecurityio/baseline
   - boostsecurityio/composition
   - boostsecurityio/supply-chain-inventory
-  - boostsecurityio/semgrep
-  - boostsecurityio/trivy-fs
-  - boostsecurityio/gitleaks
+#  - boostsecurityio/semgrep
+#  - boostsecurityio/trivy-fs
+#  - boostsecurityio/gitleaks
