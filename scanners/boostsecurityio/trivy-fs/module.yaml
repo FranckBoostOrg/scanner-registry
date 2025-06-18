@@ -93,6 +93,15 @@ setup:
       chmod +x trivy
 
 steps:
+  - run: |
+      while IFS= read -r line; do
+        if [ "$(find . -name "$line" | wc -l)" != "0" ]
+        then
+          exit 0
+        fi
+      done < $SETUP_PATH/../../registry/scanners/boostsecurityio/trivy-fs/filelist.txt
+      echo "No supported language file detected"
+      exit 1
   - scan:
       command:
         environment:
@@ -101,15 +110,7 @@ steps:
           TRIVY_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-db:2,ghcr.io/aquasecurity/trivy-db:2
           TRIVY_JAVA_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-java-db:1,ghcr.io/aquasecurity/trivy-java-db:1
         run: |
-          while IFS= read -r line; do
-            if [ "$(find . -name "$line" | wc -l)" != "0" ]
-            then
-              $SETUP_PATH/trivy fs ${TRIVY_ADDITIONAL_ARGS} --format json --no-progress --scanners vuln . 2>&1
-              exit 0
-            fi
-          done < $SETUP_PATH/../../registry/scanners/boostsecurityio/trivy-fs/filelist.txt
-          echo "No supported language file detected"
-          exit 1
+          $SETUP_PATH/trivy fs ${TRIVY_ADDITIONAL_ARGS} --format json --no-progress --scanners vuln . 2>&1
       format: sarif
       post-processor:
         docker:
