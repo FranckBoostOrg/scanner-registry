@@ -105,7 +105,7 @@ steps:
             if [ "$(find . -name "$line" | wc -l)" != "0" ]
             then
               $SETUP_PATH/trivy fs ${TRIVY_ADDITIONAL_ARGS} --format json --no-progress --scanners vuln . 2>&1
-              break
+              exit 0
             fi
           done < $SETUP_PATH/../../registry/scanners/boostsecurityio/trivy-fs/filelist.txt
           echo "No supported language file detected"
