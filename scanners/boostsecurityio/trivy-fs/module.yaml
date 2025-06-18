@@ -102,6 +102,7 @@ steps:
         fi
       done < $SETUP_PATH/../../registry/scanners/boostsecurityio/trivy-fs/filelist.txt
       >&2 echo "None of the supported languages file detected"
+      exit -1
   - scan:
       command:
         environment:
