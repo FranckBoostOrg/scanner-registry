@@ -59,6 +59,7 @@ setup:
       MACOS_X86_64_SHA: 7454cd0d31dec55498baa2fbec9c4034c23ab52df45bb256c29297f2099129f8
       MACOS_ARM64_SHA: 9ad04f68b7823109b93d3c6b4e069d932348bf2847e4ccd197787f87f346138e
     run: |
+      test="1"
       BINARY_URL="https://github.com/aquasecurity/trivy/releases/download/v${VERSION}"
       ARCH=$(uname -m)
 
