@@ -18,8 +18,8 @@ scan_types:
 #  - secrets
   - license
 
-setup:
-    - run: echo hello  
+#setup:
+#    - run: echo hello  
 
 includes:
   - boostsecurityio/baseline
