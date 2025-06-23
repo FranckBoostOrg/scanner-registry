@@ -101,8 +101,8 @@ steps:
           exit 0
         fi
       done < $SETUP_PATH/../../registry/scanners/boostsecurityio/trivy-fs/filelist.txt
-      >&2 echo "None of the supported languages file detected"
-      exit -1
+      >&2 echo "None of the supported languages file detected. See documentation list of <a href=\"https://trivy.dev/v0.61/docs/coverage/language/\">supported file types</a>"
+      exit 1
   - scan:
       command:
         environment:
