@@ -1,0 +1,16 @@
+
+SECRET_KEY: VyaXR5LmlvOmNtVm1kR3R1T2pBeE
+SCA:
+  FORCE_NUGET: true
+  PIP_INDEX_URL: 
+  PIP_CONFIG: 
+  PIP_REMOTE_CONFIG: git@gexample.com:FranckBoostOrg/terragoat.git
+  MAVEN_SETTINGS: |
+      <settings>
+          ...
+      </setting>
+
+
+FORCE_SCAN: true
+
+enc!AES256!
