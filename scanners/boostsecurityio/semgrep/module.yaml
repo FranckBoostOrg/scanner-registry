@@ -19,7 +19,7 @@ setup:
       echo "SEMGREP_RULES set to: '$SEMGREP_RULES'"
       for rule in $SEMGREP_RULES; do
         case "$rule" in
-          .semgrep/*|http://*|https://*)
+          .semgrep/*|http://*|https://*|boost)
             # valid rule token; do nothing
             ;;
           *)
@@ -34,7 +34,20 @@ steps:
       command:
         docker:
           image: returntocorp/semgrep:1.114.0@sha256:0cd75960cfec2215ff734a4f6379bbbb6edb82de0c24593dd0a70ec65e9860a9
-          command: semgrep scan --oss-only --sarif --quiet --disable-version-check --metrics=off .
+          command: |
+            parsed_rules=""
+            for rule in $SEMGREP_RULES; do
+              case "$rule" in
+                boost)
+                  # valid rule token; do nothing
+                  parsed_rules="$parsed_rules https://assets.build.boostsecurity.io/semgrep-rules/stable/all-sast-rules.yml"
+                  ;;
+                *)
+                  parsed_rules="$parsed_rules $rule"
+                  ;;
+              esac
+            done
+            semgrep scan --oss-only --sarif --quiet --disable-version-check --metrics=off .
           workdir: /src
           environment:
             XDG_CONFIG_HOME: /tmp
