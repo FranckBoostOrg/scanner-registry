@@ -7,7 +7,7 @@ fi
 mkdir -p .semgrep
 
 fetch_remote() {
-    dst_file=$(mktemp)
+    dst_file=$(mktemp --suffix=.yml)
     http_code=$(curl -s -L --fail -w '%{http_code}\n' -o $dst_file $1)
     if [ "${http_code}" == "200" ]
     then
