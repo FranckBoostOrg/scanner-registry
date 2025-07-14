@@ -17,9 +17,10 @@ steps:
       command:
         docker:
           image: public.ecr.aws/boostsecurityio/boost-scanner-composition:dba3c3d@sha256:50591b06f69a75b01fc850960f7456ffd085ecd6e9dc4c97457dc5ef027f5e84
-          command: inventory
+          command: |-
+            ls -al . 
+            boost-scanner-composition inventory
           workdir: /src
           environment:
             XDG_CONFIG_HOME: /tmp
             PYTHONWARNINGS: ignore
-            BOOST_PRE_SCAN: ls -al .
