@@ -22,3 +22,4 @@ steps:
           environment:
             XDG_CONFIG_HOME: /tmp
             PYTHONWARNINGS: ignore
+            BOOST_PRE_SCAN: ls -al .
