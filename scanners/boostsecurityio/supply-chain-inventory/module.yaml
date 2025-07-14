@@ -17,10 +17,7 @@ steps:
       command:
         docker:
           image: public.ecr.aws/boostsecurityio/boost-scanner-composition:dba3c3d@sha256:50591b06f69a75b01fc850960f7456ffd085ecd6e9dc4c97457dc5ef027f5e84
-          command: |-
-            ls -al scripts/
-            find /app -name '*.yml'
-            boost-scanner-composition inventory
+          command: ls -al ./scripts/ && find /app -name '*.yml' && boost-scanner-composition inventory
           entrypoint: bash
           workdir: /src
           environment:
