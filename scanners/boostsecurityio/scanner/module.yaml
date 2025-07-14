@@ -18,6 +18,6 @@ scan_types:
   - license
 
 includes:
-  - boostsecurityio/baseline
+#  - boostsecurityio/baseline
   - boostsecurityio/supply-chain-inventory
-  - boostsecurityio/composition
+#  - boostsecurityio/composition
