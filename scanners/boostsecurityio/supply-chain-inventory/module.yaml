@@ -18,7 +18,7 @@ steps:
         docker:
           image: public.ecr.aws/boostsecurityio/boost-scanner-composition:dba3c3d@sha256:50591b06f69a75b01fc850960f7456ffd085ecd6e9dc4c97457dc5ef027f5e84
           command: >
-            -c "find / -path '*/.cache*' || ls -al . && semgrep scan --json --metrics=off --disable-version-check --no-rewrite-rule-ids --error --config="--config=/app/.venv/lib/python3.12/site-packages/boostsec/scanner_composition/scanner/rules/inventory/ai/python/inventory.ai.pypi.openai.deepseek.yml /app/.venv/lib/python3.12/site-packages/boostsec/scanner_composition/scanner/rules/inventory/ai/python/inventory.ai.pypi.openai.yml" /src"
+            -c "find / -path '*/.cache*' || ls -al . && semgrep scan --json --metrics=off --disable-version-check --no-rewrite-rule-ids --error --config="/app/.venv/lib/python3.12/site-packages/boostsec/scanner_composition/scanner/rules/inventory/ai/python/inventory.ai.pypi.openai.deepseek.yml /app/.venv/lib/python3.12/site-packages/boostsec/scanner_composition/scanner/rules/inventory/ai/python/inventory.ai.pypi.openai.yml" /src"
           entrypoint: bash
           workdir: /src
           environment:
