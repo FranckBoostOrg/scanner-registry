@@ -19,5 +19,5 @@ scan_types:
 
 includes:
   - boostsecurityio/baseline
-  - boostsecurityio/composition
   - boostsecurityio/supply-chain-inventory
+  - boostsecurityio/composition
