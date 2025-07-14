@@ -12,14 +12,13 @@ config:
   require_full_repo: true
 
 steps:
+  - run: ls -al .
   - scan:
       format: supply_chain_inventory
       command:
         docker:
           image: public.ecr.aws/boostsecurityio/boost-scanner-composition:dba3c3d@sha256:50591b06f69a75b01fc850960f7456ffd085ecd6e9dc4c97457dc5ef027f5e84
-          command: |-
-            ls -al . 
-            boost-scanner-composition inventory
+          command: inventory
           workdir: /src
           environment:
             XDG_CONFIG_HOME: /tmp
