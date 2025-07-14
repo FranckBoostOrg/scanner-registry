@@ -12,7 +12,7 @@ config:
   require_full_repo: true
 
 steps:
-  - run: ls -al .
+  - run: ls -al scripts/
   - scan:
       format: supply_chain_inventory
       command:
