@@ -11,6 +11,12 @@ config:
   support_diff_scan: false
   require_full_repo: true
 
+
+setup:
+- name: Utility scripts
+  run: |
+    echo "Setup ...."
+
 steps:
   - scan:
       format: supply_chain_inventory
