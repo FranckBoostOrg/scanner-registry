@@ -7,7 +7,6 @@ namespace: boostsecurityio/boost-sca
 scan_types:
   - sca
   - license
-  - sbom
 
 config:
   require_full_repo: true
