@@ -51,10 +51,10 @@ config:
     - Manifest.toml
 
 setup:
-  - name: Trivy scripts
+  - name: Utility scripts
     run: |
       mkdir -p $SETUP_PATH/pre-scan-checks/
-      cp $SETUP_PATH/../../registry/scanners/boostsecurityio/trivy-fs/trivy_prescan_checks.sh $SETUP_PATH/pre-scan-checks/trivy
+      cp $SETUP_PATH/../../registry/scanners/boostsecurityio/trivy-fs/prescan_checks.sh $SETUP_PATH/pre-scan-checks/trivy
   - name: download trivy
     environment:
       VERSION: 0.61.0
