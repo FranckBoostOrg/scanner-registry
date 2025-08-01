@@ -38,6 +38,8 @@ config:
     - "*.whl"
 
 steps:
+    - run: |
+        printenv
     - scan:
         command:
           docker:
