@@ -38,6 +38,8 @@ config:
     - "*.whl"
 
 steps:
+    - run: |
+        [ -n "$BOOST_MULTI_SCAN_DIR" ] && $BOOST_MULTI_SCAN_DIR/multi_scan.sh
     - scan:
         command:
           docker:
