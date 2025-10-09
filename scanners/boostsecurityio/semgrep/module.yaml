@@ -34,7 +34,7 @@ steps:
       command:
         docker:
           image: returntocorp/semgrep:1.139.0@sha256:e1e0cde346c758f755e1bd28fd0ea43cde9d523b59a040611a6bdde2f84bb3dd
-          command: ash -c "semgrep scan --oss-only --sarif --disable-version-check --metrics=off --debug --output /tmp/report.sarif.json . > /tmp/semgrep_logs.txt 2>&1 && cat /tmp/report.sarif.json"
+          command: ash -c "semgrep scan --oss-only --sarif --disable-version-check --metrics=off --debug --output report.sarif.json . > semgrep_logs.txt 2>&1 && cat /tmp/report.sarif.json"
           workdir: /src
           environment:
             XDG_CONFIG_HOME: /tmp
