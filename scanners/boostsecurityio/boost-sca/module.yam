@@ -1,8 +1,8 @@
 api_version: 1.0
 
-id: boostsecurityio/boost-sc
+id: boostsecurityio/boost-sca
 name: BoostSecurity SCA
-namespace: boostsecurityio/boost-sc
+namespace: boostsecurityio/boost-sca
 scan_types:
   - sca
   - license
