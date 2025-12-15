@@ -43,5 +43,9 @@ steps:
       format: sarif
       post-processor:
         run: |-
-          docker run public.ecr.aws/boostsecurityio/boost-scanner-semgrep:57334c4@sha256:3873871210db82461972a6df2ec0494394f2a8ce37af1f2a702b195db230c63d process > results.sarif
+          while read line
+          do
+            echo "$line" >> raw_results.sarif
+          done < "${1:-/dev/stdin}"
+          cat raw_results.sarif | docker run public.ecr.aws/boostsecurityio/boost-scanner-semgrep:57334c4@sha256:3873871210db82461972a6df2ec0494394f2a8ce37af1f2a702b195db230c63d process > results.sarif
           cat results.sarif
