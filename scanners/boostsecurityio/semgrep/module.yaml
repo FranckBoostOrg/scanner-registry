@@ -44,4 +44,5 @@ steps:
       post-processor:
         run: |-
           cat /dev/stdin > /tmp/raw_results.sarif
-          docker run -i --rm public.ecr.aws/boostsecurityio/boost-scanner-semgrep:57334c4@sha256:3873871210db82461972a6df2ec0494394f2a8ce37af1f2a702b195db230c63d process < /tmp/raw_results.sarif
+          docker run -i --rm public.ecr.aws/boostsecurityio/boost-scanner-semgrep:57334c4@sha256:3873871210db82461972a6df2ec0494394f2a8ce37af1f2a702b195db230c63d process < /tmp/raw_results.sarif > /tmp/results.sarif
+          cat /tmp/results.sarif
