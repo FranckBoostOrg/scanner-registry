@@ -107,7 +107,8 @@ steps:
           --license-full
           --no-progress
           --scanners vuln
-          --skip-version-check 
+          --skip-version-check
+          --include-dev-deps
           . 2>&1
       format: cyclonedx
       post-processor:
