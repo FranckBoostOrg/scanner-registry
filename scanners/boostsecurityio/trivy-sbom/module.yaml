@@ -104,7 +104,8 @@ steps:
           --no-progress
           --scanners vuln
           --cache-dir=/tmp/trivy/
-          --skip-version-check 
+          --skip-version-check
+          --include-dev-deps
           . 2>&1
       format: cyclonedx
       post-processor:
