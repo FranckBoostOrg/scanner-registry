@@ -108,6 +108,7 @@ steps:
           --no-progress
           --scanners ${TRIVY_SCANNERS}
           --skip-version-check 
+          --include-dev-deps
           . 2>&1
       format: sarif
       post-processor:
