@@ -30,6 +30,7 @@ setup:
       done
 
 steps:
+  - run: find .
   - scan:
       command:
         docker:
