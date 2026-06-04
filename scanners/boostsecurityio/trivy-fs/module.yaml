@@ -103,7 +103,7 @@ steps:
           TRIVY_SCANNERS: vuln
         run: >
           rm -rf /home/runner/.cache/trivy/* &&
-          rm -rf ~/.m2/*
+          rm -rf ~/.m2/* &&
           $SETUP_PATH/trivy fs 
           --debug
           --list-all-pkgs
