@@ -101,6 +101,7 @@ steps:
           TRIVY_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-db:2,ghcr.io/aquasecurity/trivy-db:2
           TRIVY_JAVA_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-java-db:1,ghcr.io/aquasecurity/trivy-java-db:1
           TRIVY_SCANNERS: vuln
+          BOOST_PRE_SCAN: rm -rf /home/runner/.cache/trivy/*
         run: >
           $SETUP_PATH/trivy fs 
           --debug
