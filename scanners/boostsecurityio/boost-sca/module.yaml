@@ -116,8 +116,8 @@ steps:
                                . > ${SCANNER_LOGS} 2>&1 && exit_code=$? || exit_code=$?
           if [ "$exit_code" != "0" ]
           then 
-              cat ${SCANNER_LOGS}
-              exit 0
+              cat ${SCANNER_LOGS} >&2
+              exit 1
           fi
           cat ${SCANNER_REPORT_PATH}     
       format: cyclonedx
