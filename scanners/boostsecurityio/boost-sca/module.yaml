@@ -108,7 +108,6 @@ steps:
           $SETUP_PATH/trivy fs ${TRIVY_ADDITIONAL_ARGS} \
                                --no-progress \
                                --skip-version-check \
-                               --quiet \
                                --license-full \
                                --format=cyclonedx \
                                --output ${SCANNER_REPORT_PATH} \
