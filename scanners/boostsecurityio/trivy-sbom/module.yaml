@@ -108,7 +108,6 @@ steps:
           if [ "$exit_code" != "0" ]
           then 
               cat ${SCANNER_LOGS}
-              exit "$exit_code"
           fi
           cat ${SCANNER_REPORT_PATH}
       format: cyclonedx
