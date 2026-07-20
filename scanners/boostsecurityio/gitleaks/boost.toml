@@ -10,3 +10,12 @@ id = "generic-api-key"
  regexTarget = "line"  
  regexes = [ '''(?i)publicKeyToken="[^"]+"''' ]
  paths = [ '''(?i)web\.config''' ]
+
+ [[rules.allowlists]]
+ regexTarget = "macth"  
+ regexes = [ '''(?i)[^A-F0-9]*[A-F0-9]{8}-[A-F0-9]{4}-[1-8][A-F0-9]{3}-[A-F0-9]{4}-[A-F0-9]{12}[^A-F0-9]*''' ]
+
+ [[rules.allowlists]]
+ regexTarget = "line"
+ regexes = [ '''(?i)<key[^>]*>[^<]*</key>''' ]
+ paths = [ '''(?i)\.xml''' ]
