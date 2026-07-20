@@ -8,7 +8,7 @@ id = "generic-api-key"
 
  [[rules.allowlists]]
  description="Do not report on path with mocks"
- paths = [ '''(?i)\Wmocks\W''' ]
+ paths = [ '''(?i)\Wmocks?\W''' ]
  
  [[rules.allowlists]]
  description="Do not report settings in .Net projects"
