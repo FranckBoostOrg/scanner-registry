@@ -61,8 +61,7 @@ steps:
           ${TRIVY_ADDITIONAL_ARGS} 
           --format json 
           --scanners ${TRIVY_SCANNERS}
-          --skip-version-check 
-          --quiet 
+          --skip-version-check
           ${BOOST_IMAGE_NAME}
       format: sarif
       post-processor:
