@@ -17,12 +17,6 @@ id = "generic-api-key"
  paths = [ '''(?i)web\.config''' ]
 
  [[rules.allowlists]]
- description="Do not report on settings in .Net projects"
- regexTarget = "line"  
- regexes = [ '''(?i)validationKey="[^"]+"''' ]
- paths = [ '''(?i)app\.config''' ]
- 
- [[rules.allowlists]]
  description="Do not report on GUID"
  regexTarget = "match"  
  regexes = [ '''(?i)[^A-F0-9]*[A-F0-9]{8}-[A-F0-9]{4}-[1-8][A-F0-9]{3}-[A-F0-9]{4}-[A-F0-9]{12}[^A-F0-9]*''' ]
