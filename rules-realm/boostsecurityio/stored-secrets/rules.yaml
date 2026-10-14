@@ -1,23 +1,4 @@
 rules:
-  CWE-200:
-    name: CWE-200
-    pretty_name: CWE-200 - Exposure of Sensitive Information to an Unauthorized Actor
-    group: stored-secrets
-    ref: https://cwe.mitre.org/data/definitions/200.html
-    description: The repository exposes sensitive information to an actor that is
-      not explicitly authorized to have access to that information.
-    categories:
-    - ALL
-    - stored-secrets
-    - cwe-top-25
-    - boost-baseline
-    - boost-hardened
-    - cwe-200
-    - cwe-798
-    - cwe-522
-    - owasp-top-10
-    recommended: true
-
   1password-secret-key:
     name: 1password-secret-key
     pretty_name: Exposed Secret - 1Password Secret Key
@@ -4315,3 +4296,22 @@ rules:
     - owasp-top-10
     recommended: true
 
+default:
+  CWE-200:
+    name: CWE-200
+    pretty_name: CWE-200 - Exposure of Sensitive Information to an Unauthorized Actor
+    group: stored-secrets
+    ref: https://cwe.mitre.org/data/definitions/200.html
+    description: The repository exposes sensitive information to an actor that is
+      not explicitly authorized to have access to that information.
+    categories:
+    - ALL
+    - stored-secrets
+    - cwe-top-25
+    - boost-baseline
+    - boost-hardened
+    - cwe-200
+    - cwe-798
+    - cwe-522
+    - owasp-top-10
+    recommended: true
